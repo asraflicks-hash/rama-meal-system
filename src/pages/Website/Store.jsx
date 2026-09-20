@@ -59,7 +59,7 @@ export default function Store({ products, onAddToCart, onBack, onHome, lang = 'e
       <div className="bg-gradient-to-r from-amber-900 to-stone-900 text-white p-6 sm:p-8 rounded-3xl shadow-lg border border-amber-800">
         <div className="max-w-2xl space-y-2">
           <span className="text-xs font-bold text-amber-300 uppercase tracking-wider">
-            सीधे मिल से आपके घर तक • 22 सिद्रा मोशन
+            सीधे मिल से आपके घर तक • By Sidra Motion
           </span>
           <h1 className="text-2xl sm:text-4xl font-black">
             रामा मिल ताजा उत्पाद स्टोर

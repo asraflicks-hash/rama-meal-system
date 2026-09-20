@@ -136,7 +136,7 @@ export default function Home({
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-black">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>{isHi ? 'रामा आटा व तेल मिल • 22 सिद्रा मोशन' : 'Rama Flour & Mustard Oil Mills • By 22 Sidra Motion'}</span>
+              <span>{isHi ? 'रामा आटा व तेल मिल • By Sidra Motion' : 'Rama Flour & Mustard Oil Mills • By Sidra Motion'}</span>
             </span>
             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
@@ -907,8 +907,8 @@ export default function Home({
             </div>
             <p className="text-stone-400 leading-relaxed">
               {isHi
-                ? 'ऑपरेटेड बाय 22 सिद्रा मोशन (By 22 Sidra Motion)। धीमी गति की पारंपरिक पत्थर चक्की का शुद्ध आटा, कच्ची घानी सरसों तेल, पशु आहार चोकर और उच्च प्रोटीन खली।'
-                : 'Operated by 22 Sidra Motion. Commercial Stone Chakki Atta, Pure Cold-Pressed Mustard Oil, Wheat Bran (Chokar), and Cattle Feed Cake (Khali).'}
+                ? 'ऑपरेटेड बाय सिद्रा मोशन (By Sidra Motion)। धीमी गति की पारंपरिक पत्थर चक्की का शुद्ध आटा, कच्ची घानी सरसों तेल, पशु आहार चोकर और उच्च प्रोटीन खली।'
+                : 'Operated by Sidra Motion. Commercial Stone Chakki Atta, Pure Cold-Pressed Mustard Oil, Wheat Bran (Chokar), and Cattle Feed Cake (Khali).'}
             </p>
             <div className="flex items-center gap-2 text-[11px] text-amber-400 font-bold">
               <Clock className="w-3.5 h-3.5" />
@@ -951,7 +951,7 @@ export default function Home({
         </div>
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-stone-500">
-          <p>© 2026 Rama Flour & Mustard Oil Mills • By 22 Sidra Motion. All rights reserved.</p>
+          <p>© 2026 Rama Flour & Mustard Oil Mills • By Sidra Motion. All rights reserved.</p>
           <p>{isHi ? 'एकीकृत चक्की प्रबंधन व ई-कॉमर्स सॉफ्टवेयर' : 'Unified Mill Operations & E-Commerce System'}</p>
         </div>
       </footer>

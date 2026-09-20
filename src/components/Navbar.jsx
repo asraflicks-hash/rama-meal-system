@@ -110,8 +110,8 @@ export default function Navbar({
               <h1 className="text-base sm:text-xl font-black tracking-tight text-stone-900 group-hover:text-amber-700 transition-colors truncate max-w-[130px] sm:max-w-none">
                 {t.brandName}
               </h1>
-              <span className="hidden md:inline-block px-2 py-0.5 text-[10px] font-bold uppercase rounded-full bg-amber-100 text-amber-900 border border-amber-300">
-                22 Sidra Motion
+              <span className="inline-block px-2 py-0.5 text-[10px] font-bold rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                By Sidra Motion
               </span>
             </div>
             <p className="text-[11px] font-medium text-stone-500 hidden sm:block">

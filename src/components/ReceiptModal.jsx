@@ -54,7 +54,7 @@ export default function ReceiptModal({ isOpen, onClose, txn, customer, millInfo 
               🌾
             </div>
             <h2 className="text-xl font-black tracking-tight text-stone-900">{millInfo.nameEn || millInfo.name || 'Rama Flour & Mustard Oil Mills'}</h2>
-            <p className="text-xs font-semibold text-amber-700">22 Sidra Motion (रामा आटा व तेल मिल)</p>
+            <p className="text-xs font-semibold text-amber-700">By Sidra Motion (रामा आटा व तेल मिल)</p>
             <p className="text-xs text-stone-500 mt-1">{millInfo.address} • Ph: {millInfo.phone}</p>
             <div className="mt-2 inline-block px-3 py-0.5 rounded-full text-xs font-black uppercase tracking-wider bg-stone-100 text-stone-800 border border-stone-300">
               {isDeposit ? '✅ DEPOSIT SLIP (जमा पर्ची)' : '📤 WITHDRAWAL SLIP (निकासी पर्ची)'}

@@ -41,7 +41,7 @@ export const generateWhatsAppReceipt = (customer, txn, millInfo) => {
   }
 
   const msg = `*${millInfo.nameEn || millInfo.name || 'Rama Flour & Oil Mills'}*\n` +
-    `_By: 22 Sidra Motion_\n` +
+    `_By: Sidra Motion_\n` +
     `--------------------------\n` +
     `🧾 *${actionText}*\n` +
     `📅 Date: ${formatDate(txn.date)}\n` +

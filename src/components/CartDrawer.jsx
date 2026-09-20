@@ -60,7 +60,7 @@ export default function CartDrawer({
   const getWhatsAppOrderUrl = () => {
     const itemsText = cart.map(i => `• ${i.name} x ${i.qty} = ₹${i.price * i.qty}`).join('\n');
     const msg = `*नया ऑनलाइन आर्डर - ${millInfo.name || 'रामा आटा व तेल मिल'}*\n` +
-      `_22 सिद्रा मोशन (By Sidra Motion)_\n` +
+      `_बाय सिद्रा मोशन (By Sidra Motion)_\n` +
       `--------------------------\n` +
       `👤 नाम: ${customerName || '-'}\n` +
       `📱 फोन: ${phone || '-'}\n` +
