@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   X, 
+  ArrowLeft,
   ArrowDownRight, 
   ArrowUpRight, 
   Search, 
@@ -10,10 +11,10 @@ import {
   Droplets, 
   UserPlus, 
   Users, 
-  IndianRupee,
-  Sparkles,
-  Lock,
-  KeyRound
+  IndianRupee, 
+  Sparkles, 
+  Lock, 
+  KeyRound 
 } from 'lucide-react';
 import { translations } from '../utils/i18n';
 
@@ -258,24 +259,38 @@ export default function QuickActionModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm">
       <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden border border-stone-200 animate-in fade-in zoom-in-95 duration-200 max-h-[92vh] flex flex-col">
         
-        {/* Modal Header */}
-        <div className="bg-stone-900 text-white p-4 flex items-center justify-between">
+        {/* Modal Header with 2 Options: Back and X (Home) */}
+        <div className="bg-stone-900 text-white p-3.5 sm:p-4 flex items-center justify-between gap-2 border-b border-stone-800">
           <div>
-            <h3 className="text-base sm:text-lg font-black flex items-center gap-2">
-              <span>⚡ {isHi ? 'मिल त्वरित एंट्री (जमा / निकासी / पिसाई किराया)' : 'Mill Entry (Deposit / Withdrawal / Grinding Rent)'}</span>
+            <h3 className="text-sm sm:text-base font-black flex items-center gap-2">
+              <span>⚡ {isHi ? 'मिल त्वरित एंट्री' : 'Quick Mill Entry'}</span>
             </h3>
-            <p className="text-xs text-amber-300 font-medium">
+            <p className="text-[11px] text-amber-300 font-medium">
               {isHi 
-                ? 'नया ग्राहक हो या पुराना • कितना जमा, कितना निकाला, कितनी पिसाई दी सब दर्ज करें' 
-                : 'New or Existing Customer • Record Deposited, Withdrawn & Rent Paid in 1 step'}
+                ? 'जमा / निकासी / पिसाई किराया' 
+                : 'Deposit / Withdrawal / Grinding Rent'}
             </p>
           </div>
-          <button 
-            onClick={onClose}
-            className="p-1 hover:bg-white/20 rounded-full transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-stone-800 hover:bg-stone-700 active:bg-stone-600 text-stone-200 hover:text-white rounded-xl text-xs font-bold transition-all border border-stone-700 active:scale-95"
+              title="वापस जाएं / Back"
+            >
+              <ArrowLeft className="w-3.5 h-3.5 text-amber-400" />
+              <span>{isHi ? '← वापस' : '← Back'}</span>
+            </button>
+            <button 
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-xl text-xs font-black transition-all border border-amber-400 active:scale-95 shadow-sm"
+              title="होम पर जाएं / बंद करें (Home / Close)"
+            >
+              <X className="w-3.5 h-3.5 font-black stroke-[3]" />
+              <span>{isHi ? '✕ होम' : '✕ Home'}</span>
+            </button>
+          </div>
         </div>
 
         {/* Form Body */}

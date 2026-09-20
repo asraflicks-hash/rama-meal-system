@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Printer, Share2, CheckCircle2 } from 'lucide-react';
+import { X, ArrowLeft, Printer, Share2, CheckCircle2 } from 'lucide-react';
 import { formatDate, formatCurrency, generateWhatsAppReceipt } from '../utils/format';
 
 export default function ReceiptModal({ isOpen, onClose, txn, customer, millInfo }) {
@@ -17,18 +17,32 @@ export default function ReceiptModal({ isOpen, onClose, txn, customer, millInfo 
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
       <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden border border-stone-200 animate-in fade-in zoom-in-95 duration-200">
         
-        {/* Modal Top Bar */}
-        <div className="bg-stone-900 text-white px-5 py-4 flex items-center justify-between no-print">
+        {/* Modal Top Bar with 2 Options: Back and X (Home) */}
+        <div className="bg-stone-900 text-white px-4 py-3.5 flex items-center justify-between no-print border-b border-stone-800">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-            <h3 className="font-bold text-lg">Transaction Receipt Slip</h3>
+            <h3 className="font-bold text-sm sm:text-base">लेन-देन रसीद पर्ची</h3>
           </div>
-          <button 
-            onClick={onClose}
-            className="p-1 hover:bg-white/20 rounded-full transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-xl text-xs font-bold transition-all border border-stone-700 active:scale-95"
+              title="वापस जाएं / Back"
+            >
+              <ArrowLeft className="w-3.5 h-3.5 text-amber-400" />
+              <span>वापस</span>
+            </button>
+            <button 
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-xl text-xs font-black transition-all border border-amber-400 active:scale-95 shadow-sm"
+              title="होम पर जाएं / बंद करें (Home / Close)"
+            >
+              <X className="w-3.5 h-3.5 font-black stroke-[3]" />
+              <span>✕ होम</span>
+            </button>
+          </div>
         </div>
 
         {/* Slip Body (Printable Area) */}

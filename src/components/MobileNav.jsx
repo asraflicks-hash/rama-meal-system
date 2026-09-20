@@ -1,11 +1,13 @@
 import React from 'react';
-import { Wheat, Droplets, PlusCircle, LayoutDashboard, Receipt, ShoppingBag } from 'lucide-react';
+import { Wheat, Droplets, PlusCircle, LayoutDashboard, Receipt, ShoppingBag, ArrowLeft, X } from 'lucide-react';
 import { translations } from '../utils/i18n';
 
 export default function MobileNav({ 
   currentView, 
   setCurrentView, 
   onOpenQuickAction, 
+  onBack,
+  onHome,
   lang = 'en',
   activeCommodity = 'wheat',
   setActiveCommodity = () => {}
@@ -122,6 +124,36 @@ export default function MobileNav({
         <LayoutDashboard className="w-5 h-5" />
         <span>{lang === 'hi' ? 'स्टॉक' : 'Stock'}</span>
       </button>
+
+      {/* Floating Mobile Quick Back & Home Dock */}
+      {currentView !== 'manager-ledger' && (onBack || onHome) && (
+        <div className="fixed bottom-16 left-0 right-0 z-40 px-3 py-1 flex items-center justify-center pointer-events-none">
+          <div className="bg-stone-950/95 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-2xl border border-stone-700 flex items-center gap-2 pointer-events-auto">
+            {onBack && (
+              <button
+                type="button"
+                onClick={onBack}
+                className="inline-flex items-center gap-1 px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-full text-xs font-bold transition-all border border-stone-600 active:scale-95"
+                title="वापस जाएं / Back"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-amber-400" />
+                <span>{lang === 'hi' ? '← वापस' : '← Back'}</span>
+              </button>
+            )}
+            {onHome && (
+              <button
+                type="button"
+                onClick={onHome}
+                className="inline-flex items-center gap-1 px-3 py-1 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-full text-xs font-black transition-all border border-amber-400 active:scale-95 shadow"
+                title="मुख्य होम स्क्रीन पर जाएं / Home"
+              >
+                <X className="w-3.5 h-3.5 font-black stroke-[3]" />
+                <span>{lang === 'hi' ? '✕ होम' : '✕ Home'}</span>
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

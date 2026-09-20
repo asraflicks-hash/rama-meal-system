@@ -121,6 +121,25 @@
   ],
   "transactions": [
     {
+      "id": "TXN-72119926",
+      "customerId": "SN406",
+      "date": "2026-09-20",
+      "type": "withdraw",
+      "category": "wheat",
+      "item": "Flour Withdrawal",
+      "quantityKg": 200,
+      "depositKg": 0,
+      "withdrawKg": 200,
+      "oilLitre": 0,
+      "khaliKg": 0,
+      "grindingFeeMode": "cash",
+      "grindingFeeAmount": 68,
+      "note": "200 kg आटा निकाला, ₹68 पिसाई दी",
+      "balanceAfterKg": 800,
+      "operator": "Munim Ji",
+      "createdAt": "2026-09-20T02:41:59.926Z"
+    },
+    {
       "id": "TXN-70878120",
       "customerId": "SN403",
       "date": "2026-09-20",
@@ -532,7 +551,7 @@
     }
   ],
   "millStock": {
-    "farmerDepositWheatTotalKg": 3410,
+    "farmerDepositWheatTotalKg": 3160,
     "millOwnedWheatQuintal": 140,
     "processedAttaBags50kg": 65,
     "processedAttaBags10kg": 120,

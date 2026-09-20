@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Check, Sparkles, Filter, Info } from 'lucide-react';
+import { ShoppingBag, Check, Sparkles, Filter, Info, ArrowLeft, X } from 'lucide-react';
 import { formatCurrency } from '../../utils/format';
 
-export default function Store({ products, onAddToCart }) {
+export default function Store({ products, onAddToCart, onBack, onHome, lang = 'en' }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   // Selected option per product (e.g. { 'PROD-1': 0 })
   const [selectedOptions, setSelectedOptions] = useState({});
@@ -29,6 +29,32 @@ export default function Store({ products, onAddToCart }) {
 
   return (
     <div className="space-y-6 pb-24 md:pb-16">
+      {/* Top Back & Home Navigation Bar */}
+      {(onBack || onHome) && (
+        <div className="flex items-center gap-2">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white border border-stone-300 hover:bg-stone-100 rounded-xl text-xs sm:text-sm font-bold text-stone-700 transition-colors shadow-sm active:scale-95"
+              title="वापस जाएं / Back"
+            >
+              <ArrowLeft className="w-4 h-4 text-stone-700" />
+              <span>{lang === 'hi' ? '← वापस (Back)' : '← Back'}</span>
+            </button>
+          )}
+          {onHome && (
+            <button
+              onClick={onHome}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-xl text-xs sm:text-sm font-black transition-colors shadow-sm active:scale-95 border border-amber-400"
+              title="मुख्य होम स्क्रीन पर जाएं / Home"
+            >
+              <X className="w-4 h-4 font-black stroke-[3]" />
+              <span>{lang === 'hi' ? '✕ होम (Home)' : '✕ Home'}</span>
+            </button>
+          )}
+        </div>
+      )}
+
       {/* Banner */}
       <div className="bg-gradient-to-r from-amber-900 to-stone-900 text-white p-6 sm:p-8 rounded-3xl shadow-lg border border-amber-800">
         <div className="max-w-2xl space-y-2">

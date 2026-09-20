@@ -11,11 +11,13 @@ import {
   Clock, 
   Edit3, 
   Check, 
-  AlertCircle 
+  AlertCircle,
+  ArrowLeft,
+  X
 } from 'lucide-react';
 import { formatCurrency, formatDate } from '../../utils/format';
 
-export default function Dashboard({ rates, onUpdateRates }) {
+export default function Dashboard({ rates, onUpdateRates, onBack, onHome, lang = 'en' }) {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isEditingRates, setIsEditingRates] = useState(false);
@@ -70,6 +72,32 @@ export default function Dashboard({ rates, onUpdateRates }) {
 
   return (
     <div className="space-y-6 pb-20 md:pb-8">
+      {/* Top Back & Home Navigation Bar */}
+      {(onBack || onHome) && (
+        <div className="flex items-center gap-2">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white border border-stone-300 hover:bg-stone-100 rounded-xl text-xs sm:text-sm font-bold text-stone-700 transition-colors shadow-sm active:scale-95"
+              title="वापस जाएं / Back"
+            >
+              <ArrowLeft className="w-4 h-4 text-stone-700" />
+              <span>{lang === 'hi' ? '← वापस (Back)' : '← Back'}</span>
+            </button>
+          )}
+          {onHome && (
+            <button
+              onClick={onHome}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-xl text-xs sm:text-sm font-black transition-colors shadow-sm active:scale-95 border border-amber-400"
+              title="मुख्य होम स्क्रीन पर जाएं / Home"
+            >
+              <X className="w-4 h-4 font-black stroke-[3]" />
+              <span>{lang === 'hi' ? '✕ होम (Home)' : '✕ Home'}</span>
+            </button>
+          )}
+        </div>
+      )}
+
       {/* Top Banner */}
       <div className="bg-stone-900 text-white rounded-3xl p-5 sm:p-7 shadow-xl border border-stone-800">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">

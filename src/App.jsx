@@ -17,8 +17,11 @@ import MustardOilLedger from './pages/Manager/MustardOilLedger';
 import Dashboard from './pages/Manager/Dashboard';
 import CounterSale from './pages/Manager/CounterSale';
 
+import { ArrowLeft, X, Home as HomeIcon } from 'lucide-react';
+
 export default function App() {
   const [currentView, setCurrentView] = useState('manager-ledger'); // Default to manager ledger as requested
+  const [viewHistory, setViewHistory] = useState(['manager-ledger']);
   const [isMobileSimulated, setIsMobileSimulated] = useState(false);
   const [lang, setLang] = useState('en'); // Default language is ENGLISH as requested
   const [millInfo, setMillInfo] = useState({
@@ -90,6 +93,33 @@ export default function App() {
     }
   };
 
+  const navigateToView = (newView) => {
+    if (newView === currentView) return;
+    setViewHistory(prev => [...prev, newView]);
+    setCurrentView(newView);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBack = () => {
+    if (viewHistory.length > 1) {
+      const nextHist = [...viewHistory];
+      nextHist.pop(); // remove current view
+      const prev = nextHist[nextHist.length - 1];
+      setViewHistory(nextHist);
+      setCurrentView(prev);
+    } else {
+      setViewHistory(['manager-ledger']);
+      setCurrentView('manager-ledger');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleHome = () => {
+    setViewHistory(['manager-ledger']);
+    setCurrentView('manager-ledger');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleSelectCustomer = async (customer) => {
     try {
       const res = await fetch(`/api/customers/${customer.id}`);
@@ -99,11 +129,10 @@ export default function App() {
       } else {
         setSelectedCustomer(customer);
       }
-      setCurrentView('manager-customer-detail');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      navigateToView('manager-customer-detail');
     } catch (err) {
       setSelectedCustomer(customer);
-      setCurrentView('manager-customer-detail');
+      navigateToView('manager-customer-detail');
     }
   };
 
@@ -182,15 +211,58 @@ export default function App() {
         {/* Main Content Area */}
         <main className="flex-1 w-full max-w-full p-2.5 sm:p-6 overflow-x-hidden">
           
+          {/* Universal Top Navigation Strip: "✕ यानी Home" और "← Back" */}
+          {currentView !== 'manager-ledger' && (
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2.5 bg-gradient-to-r from-stone-900 via-stone-800 to-stone-900 text-white px-3.5 py-2.5 rounded-2xl shadow-lg border border-stone-700 animate-in fade-in duration-200">
+              <div className="flex items-center gap-2">
+                {/* 1. Back Button */}
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-stone-800 hover:bg-stone-700 active:bg-stone-600 text-stone-100 hover:text-white rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-95 shadow border border-stone-600 hover:border-amber-400/60"
+                  title="पीछे जाएं / Go Back"
+                >
+                  <ArrowLeft className="w-4 h-4 text-amber-400" />
+                  <span>{lang === 'hi' ? '← वापस (Back)' : '← Back'}</span>
+                </button>
+
+                {/* 2. X yani Home Button */}
+                <button
+                  type="button"
+                  onClick={handleHome}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 rounded-xl text-xs sm:text-sm font-black transition-all active:scale-95 shadow-md hover:shadow-amber-500/25 border border-amber-400"
+                  title="मुख्य होम स्क्रीन पर जाएं / Go Home"
+                >
+                  <X className="w-4 h-4 text-stone-950 font-black stroke-[3]" />
+                  <span>{lang === 'hi' ? '✕ होम (Home)' : '✕ Home'}</span>
+                </button>
+              </div>
+
+              {/* Breadcrumb / Current View Indicator */}
+              <div className="text-[11px] sm:text-xs text-stone-300 font-semibold flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                <span className="text-stone-400">{lang === 'hi' ? 'वर्तमान विकल्प:' : 'Active Option:'}</span>
+                <span className="text-amber-300 font-bold">
+                  {currentView === 'manager-customer-detail' && (lang === 'hi' ? `खाता पासबुक (${selectedCustomer?.id || ''})` : `Passbook (${selectedCustomer?.id || ''})`)}
+                  {currentView === 'manager-dashboard' && (lang === 'hi' ? 'दैनिक ऑपरेशन्स व मंडी भाव' : 'Daily Operations & Rates')}
+                  {currentView === 'manager-pos' && (lang === 'hi' ? 'काउंटर नकद बिक्री (POS)' : 'Counter Sales POS')}
+                  {currentView === 'website-home' && (lang === 'hi' ? 'वेबसाइट मुख्य पृष्ठ' : 'Website Home')}
+                  {currentView === 'website-store' && (lang === 'hi' ? 'ताजा उत्पाद स्टोर' : 'Product Store')}
+                  {currentView === 'website-passbook' && (lang === 'hi' ? 'किसान ऑनलाइन पासबुक' : 'Passbook Lookup')}
+                </span>
+              </div>
+            </div>
+          )}
+
           {/* Website Home */}
           {currentView === 'website-home' && (
             <WebsiteHome
               rates={rates}
               products={products}
               onAddToCart={handleAddToCart}
-              onNavigateToStore={() => setCurrentView('website-store')}
-              onNavigateToPassbook={() => setCurrentView('website-passbook')}
-              onNavigateToManager={() => setCurrentView('manager-ledger')}
+              onNavigateToStore={() => navigateToView('website-store')}
+              onNavigateToPassbook={() => navigateToView('website-passbook')}
+              onNavigateToManager={() => navigateToView('manager-ledger')}
               lang={lang}
             />
           )}
@@ -200,13 +272,19 @@ export default function App() {
             <WebsiteStore
               products={products}
               onAddToCart={handleAddToCart}
+              onBack={handleBack}
+              onHome={handleHome}
               lang={lang}
             />
           )}
 
           {/* Farmer Passbook Self Lookup */}
           {currentView === 'website-passbook' && (
-            <CustomerPassbookLookup lang={lang} />
+            <CustomerPassbookLookup
+              onBack={handleBack}
+              onHome={handleHome}
+              lang={lang}
+            />
           )}
 
           {/* Manager: Customer Ledger Directory (Unified: Wheat, Mustard Oil & Both in One Section) */}
@@ -227,7 +305,8 @@ export default function App() {
           {currentView === 'manager-customer-detail' && selectedCustomer && (
             <CustomerDetail
               customer={selectedCustomer}
-              onBack={() => setCurrentView('manager-ledger')}
+              onBack={handleBack}
+              onHome={handleHome}
               onOpenQuickActionForCustomer={(c, cat, type) => handleOpenQuickAction(c, cat, type)}
               onShowReceipt={(txn, c) => setReceiptModalData({ isOpen: true, txn, customer: c })}
               onRefresh={fetchData}
@@ -241,6 +320,9 @@ export default function App() {
             <Dashboard
               rates={rates}
               onUpdateRates={(newRates) => setRates(newRates)}
+              onBack={handleBack}
+              onHome={handleHome}
+              lang={lang}
             />
           )}
 
@@ -249,6 +331,9 @@ export default function App() {
             <CounterSale
               products={products}
               onSaleComplete={() => fetchData()}
+              onBack={handleBack}
+              onHome={handleHome}
+              lang={lang}
             />
           )}
 
@@ -259,6 +344,8 @@ export default function App() {
           currentView={currentView}
           setCurrentView={setCurrentView}
           onOpenQuickAction={() => handleOpenQuickAction()}
+          onBack={handleBack}
+          onHome={handleHome}
           lang={lang}
           activeCommodity={activeCommodity}
           setActiveCommodity={setActiveCommodity}

@@ -9,11 +9,13 @@ import {
   AlertCircle,
   Phone,
   Printer,
-  Lock
+  Lock,
+  ArrowLeft,
+  X
 } from 'lucide-react';
 import { formatDate, formatCurrency } from '../../utils/format';
 
-export default function CustomerPassbookLookup() {
+export default function CustomerPassbookLookup({ onBack, onHome, lang = 'en' }) {
   const [serialNo, setSerialNo] = useState('SN400');
   const [pin, setPin] = useState('982026');
   const [result, setResult] = useState(null);
@@ -52,6 +54,32 @@ export default function CustomerPassbookLookup() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6 pb-24 md:pb-16">
+      {/* Top Back & Home Navigation Bar */}
+      {(onBack || onHome) && (
+        <div className="flex items-center gap-2">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white border border-stone-300 hover:bg-stone-100 rounded-xl text-xs sm:text-sm font-bold text-stone-700 transition-colors shadow-sm active:scale-95"
+              title="वापस जाएं / Back"
+            >
+              <ArrowLeft className="w-4 h-4 text-stone-700" />
+              <span>{lang === 'hi' ? '← वापस (Back)' : '← Back'}</span>
+            </button>
+          )}
+          {onHome && (
+            <button
+              onClick={onHome}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-xl text-xs sm:text-sm font-black transition-colors shadow-sm active:scale-95 border border-amber-400"
+              title="मुख्य होम स्क्रीन पर जाएं / Home"
+            >
+              <X className="w-4 h-4 font-black stroke-[3]" />
+              <span>{lang === 'hi' ? '✕ होम (Home)' : '✕ Home'}</span>
+            </button>
+          )}
+        </div>
+      )}
+
       {/* Banner */}
       <div className="text-center space-y-2">
         <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 mb-1">
