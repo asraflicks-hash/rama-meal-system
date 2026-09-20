@@ -484,6 +484,30 @@ export default function CustomerDetail({
                 );
               })}
             </tbody>
+            {transactions.length > 0 && (
+              <tfoot className="border-t-2 border-stone-400 bg-stone-100/90 font-black text-stone-900">
+                <tr>
+                  <td colSpan="2" className="py-3.5 px-3 text-right uppercase text-xs tracking-wider">
+                    {isHi ? `कुल योग (${transactions.length} प्रविष्टियां):` : `TOTAL (${transactions.length} ENTRIES):`}
+                  </td>
+                  <td className="py-3.5 px-3 text-right font-mono text-emerald-800 text-sm whitespace-nowrap bg-emerald-100/60">
+                    +{wheatDeposited} kg
+                  </td>
+                  <td className="py-3.5 px-3 text-right font-mono text-amber-900 text-sm whitespace-nowrap bg-amber-100/60">
+                    -{attaWithdrawn} kg
+                  </td>
+                  <td className="py-3.5 px-3 text-right font-mono text-indigo-900 text-sm whitespace-nowrap bg-indigo-100/60">
+                    ₹{totalGrindingPaid}
+                  </td>
+                  <td className="py-3.5 px-3 text-right font-mono text-base text-amber-950 bg-amber-200/90 whitespace-nowrap">
+                    {wheatBalance} kg
+                  </td>
+                  <td className="py-3.5 px-3 text-center text-[11px] font-bold text-stone-600">
+                    {isHi ? 'वर्तमान शेष' : 'Balance'}
+                  </td>
+                </tr>
+              </tfoot>
+            )}
           </table>
 
           {transactions.length === 0 && (

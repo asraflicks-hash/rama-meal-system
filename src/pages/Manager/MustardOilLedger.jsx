@@ -198,6 +198,27 @@ export default function MustardOilLedger({
                 );
               })}
             </tbody>
+            {mustardCustomers.length > 0 && (
+              <tfoot className="border-t-2 border-yellow-500/60 bg-yellow-50/90 font-black text-stone-900">
+                <tr>
+                  <td colSpan="3" className="py-3 px-3 text-right uppercase text-xs tracking-wider text-stone-800">
+                    {isHi ? `कुल योग (${mustardCustomers.length} खाते):` : `TOTAL (${mustardCustomers.length} ACCOUNTS):`}
+                  </td>
+                  <td className="py-3 px-3 text-right font-mono text-sm text-stone-950">
+                    {mustardCustomers.reduce((acc, c) => acc + (c.balances?.mustardDepositTotalKg || 0), 0)} kg
+                  </td>
+                  <td className="py-3 px-3 text-right font-mono text-base text-amber-900 bg-yellow-200/80">
+                    {mustardCustomers.reduce((acc, c) => acc + (c.balances?.oilAvailableLitre || 0), 0)} {t.litres}
+                  </td>
+                  <td className="py-3 px-3 text-right font-mono text-sm text-stone-800">
+                    {mustardCustomers.reduce((acc, c) => acc + (c.balances?.khaliAvailableKg || 0), 0)} kg
+                  </td>
+                  <td className="py-3 px-3 text-center text-[11px] font-bold text-stone-500">
+                    -
+                  </td>
+                </tr>
+              </tfoot>
+            )}
           </table>
         </div>
       </div>

@@ -210,13 +210,50 @@ export default function DailyReportModal({
     const prevY = doc.lastAutoTable ? doc.lastAutoTable.finalY + 18 : 230;
     doc.text(`DETAILED TRANSACTIONS LIST (${txns.length} ENTRIES)`, 40, prevY);
 
+    // Build footer rows for autoTable with full totals
+    const footRows = [
+      [
+        { content: 'TOTAL (कुल प्रविष्टियां योग):', colSpan: 4, styles: { halign: 'right', fontStyle: 'bold', fontSize: 8.5 } },
+        { content: `${txns.filter(t => t.type === 'deposit').length} In / ${txns.filter(t => t.type === 'withdraw').length} Out`, styles: { fontStyle: 'bold', fontSize: 7.5 } },
+        { content: 'Total Qty:', styles: { halign: 'right', fontStyle: 'bold', fontSize: 7.5 } },
+        { content: `+${report.wheatDepositTotalKg || 0} kg जमा\n-${report.attaWithdrawnTotalKg || 0} kg आटा${report.oilWithdrawnTotalLitre ? `\n-${report.oilWithdrawnTotalLitre} L तेल` : ''}`, styles: { fontStyle: 'bold', fontSize: 7.5, textColor: [180, 83, 9] } },
+        { content: `INR ${report.grindingFeeTotal || 0}`, styles: { halign: 'right', fontStyle: 'bold', fontSize: 8.5, textColor: [16, 149, 106] } },
+        { content: '-', styles: { halign: 'center' } },
+        { content: `पिसाई: INR ${report.grindingFeeTotal || 0}`, styles: { fontStyle: 'bold', fontSize: 7.5 } }
+      ],
+      [
+        { 
+          content: `दैनिक कुल नकद गल्ला आय (GRAND TOTAL CASH: पिसाई ₹${report.grindingFeeTotal || 0} + काउंटर ₹${report.counterSalesTotal || 0}):`, 
+          colSpan: 7, 
+          styles: { halign: 'right', fontStyle: 'bold', fontSize: 9 } 
+        },
+        { 
+          content: `INR ${report.totalCashIncome || 0}`, 
+          styles: { halign: 'right', fontStyle: 'bold', fontSize: 9.5, textColor: [16, 149, 106] } 
+        },
+        { 
+          content: 'AUDITED & VERIFIED', 
+          colSpan: 2, 
+          styles: { halign: 'center', fontStyle: 'bold', fontSize: 7.5, textColor: [90, 90, 90] } 
+        }
+      ]
+    ];
+
     autoTable(doc, {
       startY: prevY + 6,
       head: [['#', 'Cust ID', 'Customer Name', 'Village', 'Type', 'Item', 'Quantity', 'Rent Paid', 'Balance', 'Operator']],
       body: tableRows.length > 0 ? tableRows : [['-', '-', 'No transactions recorded on this date', '-', '-', '-', '-', '-', '-', '-']],
+      foot: tableRows.length > 0 ? footRows : undefined,
       theme: 'striped',
       headStyles: { fillColor: darkColor, textColor: 255, fontStyle: 'bold', fontSize: 8 },
       bodyStyles: { fontSize: 7.5, textColor: [40, 40, 40] },
+      footStyles: { 
+        fillColor: [248, 240, 226], 
+        textColor: [20, 20, 20], 
+        fontStyle: 'bold', 
+        lineWidth: 0.5, 
+        lineColor: [210, 185, 150] 
+      },
       alternateRowStyles: { fillColor: [248, 248, 248] },
       didDrawPage: (data) => {
         // Page Footer
@@ -235,6 +272,50 @@ export default function DailyReportModal({
         );
       }
     });
+
+    // If counter retail sales exist, also render Counter Sales Table with Total
+    if (report.counterSales && report.counterSales.length > 0) {
+      const counterRows = report.counterSales.map((s, idx) => {
+        const itemsStr = (s.items || []).map(i => `${i.name} (x${i.qty})`).join(', ');
+        return [
+          idx + 1,
+          s.id || '-',
+          s.customerName || 'Walk-in',
+          s.phone || '-',
+          itemsStr,
+          s.paymentMode || 'Cash',
+          `INR ${s.totalAmount || 0}`,
+          s.operator || 'Counter'
+        ];
+      });
+
+      const currentY = doc.lastAutoTable ? doc.lastAutoTable.finalY + 16 : 400;
+      if (currentY > doc.internal.pageSize.height - 120) {
+        doc.addPage();
+      }
+      const titleY = doc.lastAutoTable ? doc.lastAutoTable.finalY + 16 : 40;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10.5);
+      doc.setTextColor(...darkColor);
+      doc.text(`COUNTER RETAIL POS SALES (${report.counterSales.length} ENTRIES)`, 40, titleY);
+
+      autoTable(doc, {
+        startY: titleY + 5,
+        head: [['#', 'Bill ID', 'Customer Name', 'Phone', 'Items Purchased', 'Mode', 'Amount', 'Operator']],
+        body: counterRows,
+        foot: [
+          [
+            { content: 'TOTAL COUNTER SALES (काउंटर बिक्री कुल):', colSpan: 6, styles: { halign: 'right', fontStyle: 'bold', fontSize: 8.5 } },
+            { content: `INR ${report.counterSalesTotal || 0}`, styles: { halign: 'right', fontStyle: 'bold', fontSize: 9, textColor: [16, 149, 106] } },
+            { content: 'Verified', styles: { halign: 'center', fontStyle: 'bold', fontSize: 7.5 } }
+          ]
+        ],
+        theme: 'striped',
+        headStyles: { fillColor: [45, 75, 95], textColor: 255, fontStyle: 'bold', fontSize: 8 },
+        bodyStyles: { fontSize: 7.5 },
+        footStyles: { fillColor: [235, 245, 250], textColor: [20, 20, 20], fontStyle: 'bold' }
+      });
+    }
 
     // Trigger instant download
     doc.save(`Rama_Mill_Daily_Report_${selectedDate}.pdf`);
@@ -589,9 +670,115 @@ export default function DailyReportModal({
                         })
                       )}
                     </tbody>
+                    {filteredTransactions.length > 0 && (
+                      <tfoot className="border-t-2 border-amber-400 bg-amber-50/95 font-bold text-stone-900">
+                        {/* Row 1: Subtotal of Table Entries */}
+                        <tr className="border-b border-amber-200">
+                          <td colSpan="4" className="py-2.5 px-3 text-right font-black uppercase text-amber-950 text-xs">
+                            {isHi ? `कुल योग (${filteredTransactions.length} एंट्री):` : `TOTAL (${filteredTransactions.length} ENTRIES):`}
+                          </td>
+                          <td className="py-2.5 px-3 text-[11px] font-bold text-stone-700">
+                            {filteredTransactions.filter(t => t.type === 'deposit').length} {isHi ? 'जमा' : 'In'} / {filteredTransactions.filter(t => t.type === 'withdraw').length} {isHi ? 'निकासी' : 'Out'}
+                          </td>
+                          <td className="py-2.5 px-3 font-mono font-black text-xs">
+                            <div className="text-emerald-800">+{report.wheatDepositTotalKg || 0} kg {isHi ? 'जमा' : 'In'}</div>
+                            <div className="text-amber-900">-{report.attaWithdrawnTotalKg || 0} kg {isHi ? 'आटा' : 'Out'}</div>
+                            {report.oilWithdrawnTotalLitre > 0 && (
+                              <div className="text-yellow-800">-{report.oilWithdrawnTotalLitre} L {isHi ? 'तेल' : 'Oil'}</div>
+                            )}
+                          </td>
+                          <td className="py-2.5 px-3 text-right font-mono font-black text-emerald-800 text-sm">
+                            ₹{report.grindingFeeTotal || 0}
+                          </td>
+                          <td className="py-2.5 px-3 text-right text-stone-400 font-mono">-</td>
+                          <td className="py-2.5 px-3 text-[11px] text-stone-600 font-semibold">
+                            {isHi ? 'पिसाई नकद' : 'Cash Rent'}
+                          </td>
+                        </tr>
+
+                        {/* Row 2: Grand Total Cash Income */}
+                        <tr className="bg-gradient-to-r from-amber-100 via-amber-200 to-amber-100 text-stone-950">
+                          <td colSpan="6" className="py-3 px-3 text-right font-black text-xs sm:text-sm text-stone-900">
+                            💰 {isHi ? 'दैनिक कुल नकद गल्ला आय (पिसाई किराया + काउंटर बिक्री):' : 'DAILY GRAND TOTAL CASH INCOME (Rent + Counter POS):'}
+                          </td>
+                          <td className="py-3 px-3 text-right font-mono font-black text-base sm:text-lg text-emerald-900">
+                            ₹{report.totalCashIncome || 0}
+                          </td>
+                          <td colSpan="2" className="py-3 px-3 text-[11px] font-bold text-amber-900">
+                            (पिसाई: ₹{report.grindingFeeTotal || 0} + काउंटर: ₹{report.counterSalesTotal || 0})
+                          </td>
+                        </tr>
+                      </tfoot>
+                    )}
                   </table>
                 </div>
               </div>
+
+              {/* Counter Retail Sales Section (if any on this date) */}
+              {report.counterSales && report.counterSales.length > 0 && (
+                <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-4 space-y-3">
+                  <div className="flex items-center justify-between pb-2 border-b border-stone-100">
+                    <h4 className="font-black text-stone-900 text-xs sm:text-sm flex items-center gap-1.5">
+                      <span>🛍️</span>
+                      <span>{isHi ? 'काउंटर सीधी बिक्री (Retail POS Bills)' : 'Counter Retail POS Sales'}</span>
+                      <span className="text-[11px] bg-stone-100 text-stone-600 px-2 py-0.5 rounded-full font-bold font-mono">
+                        {report.counterSales.length}
+                      </span>
+                    </h4>
+                    <span className="font-mono font-bold text-emerald-700 text-xs sm:text-sm">
+                      {isHi ? 'काउंटर बिक्री कुल:' : 'Total:'} ₹{report.counterSalesTotal || 0}
+                    </span>
+                  </div>
+
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs">
+                      <thead>
+                        <tr className="bg-stone-100/90 text-stone-600 font-bold border-b border-stone-200">
+                          <th className="py-2.5 px-3">#</th>
+                          <th className="py-2.5 px-3">{isHi ? 'बिल क्र.' : 'Bill ID'}</th>
+                          <th className="py-2.5 px-3">{isHi ? 'ग्राहक' : 'Customer'}</th>
+                          <th className="py-2.5 px-3">{isHi ? 'सामान' : 'Items'}</th>
+                          <th className="py-2.5 px-3">{isHi ? 'माध्यम' : 'Mode'}</th>
+                          <th className="py-2.5 px-3 text-right">{isHi ? 'रकम (₹)' : 'Amount (₹)'}</th>
+                          <th className="py-2.5 px-3">{isHi ? 'ऑपरेटर' : 'Operator'}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-stone-100 font-medium">
+                        {report.counterSales.map((sale, idx) => (
+                          <tr key={sale.id || idx} className="hover:bg-stone-50">
+                            <td className="py-2 px-3 text-stone-400 font-mono text-[11px]">{idx + 1}</td>
+                            <td className="py-2 px-3 font-mono font-bold text-stone-900">{sale.id}</td>
+                            <td className="py-2 px-3 font-bold text-stone-900">{sale.customerName}</td>
+                            <td className="py-2 px-3 text-stone-600">
+                              {(sale.items || []).map(i => `${i.name} (x${i.qty})`).join(', ')}
+                            </td>
+                            <td className="py-2 px-3">
+                              <span className="bg-stone-100 px-2 py-0.5 rounded text-[10px] font-bold uppercase">
+                                {sale.paymentMode || 'Cash'}
+                              </span>
+                            </td>
+                            <td className="py-2 px-3 text-right font-mono font-black text-emerald-800">
+                              ₹{sale.totalAmount}
+                            </td>
+                            <td className="py-2 px-3 text-stone-500 text-[11px]">{sale.operator || 'Counter'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                      <tfoot className="border-t-2 border-stone-300 bg-stone-100 font-bold">
+                        <tr>
+                          <td colSpan="5" className="py-2.5 px-3 text-right font-black uppercase text-stone-800 text-xs">
+                            {isHi ? 'कुल काउंटर बिक्री (TOTAL COUNTER):' : 'TOTAL COUNTER SALES:'}
+                          </td>
+                          <td className="py-2.5 px-3 text-right font-mono font-black text-emerald-800 text-sm">
+                            ₹{report.counterSalesTotal || 0}
+                          </td>
+                          <td className="py-2.5 px-3"></td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+              )}
             </>
           )}
 
