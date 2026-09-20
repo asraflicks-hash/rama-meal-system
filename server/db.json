@@ -1,0 +1,544 @@
+{
+  "millInfo": {
+    "name": "Rama Flour & Mustard Oil Mills",
+    "nameHi": "रामा आटा व तेल मिल",
+    "nameEn": "Rama Flour & Mustard Oil Mills",
+    "tagline": "Tradition of Purity - 100% Stone Chakki Atta & Cold-Pressed Mustard Oil",
+    "taglineHi": "शुद्धता और ताजगी की परंपरा - 100% पत्थर चक्की आटा व कच्ची घानी सरसों तेल",
+    "by": "22 Sidra Motion",
+    "byHi": "22 सिद्रा मोशन",
+    "phone": "+91 98765 43210",
+    "altPhone": "+91 87654 32109",
+    "address": "Main Market, Mandi Road, Near Railway Station",
+    "addressHi": "मेन मार्केट, मंडी रोड, रेलवे स्टेशन के पास",
+    "city": "Lucknow, Uttar Pradesh",
+    "cityHi": "लखनऊ, उत्तर प्रदेश",
+    "gstin": "09AAACR1234F1Z5",
+    "established": "1998"
+  },
+  "rates": {
+    "wheatPerKg": 27.5,
+    "attaPerKg": 32,
+    "mustardPerKg": 58,
+    "oilPerLitre": 145,
+    "chokarPerKg": 22,
+    "khaliPerKg": 28,
+    "grindingPerKg": 1,
+    "grindingDeductionPerQuintalKg": 2,
+    "oilExpellerPerKg": 4,
+    "oilYieldPercent": 34,
+    "khaliYieldPercent": 64
+  },
+  "customers": [
+    {
+      "id": "SN406",
+      "name": "anwar haider",
+      "nameHi": "anwar haider",
+      "phone": "6306348371",
+      "village": "jargawan",
+      "villageHi": "jargawan",
+      "location": "jargawan",
+      "locationHi": "jargawan",
+      "fatherName": "",
+      "fatherNameHi": "",
+      "accountOpenDate": "2026-09-20",
+      "notes": ""
+    },
+    {
+      "id": "SN404",
+      "name": "Suraj Singh",
+      "nameHi": "Suraj Singh",
+      "phone": "9988776655",
+      "village": "Bilgram",
+      "villageHi": "Bilgram",
+      "location": "Near Market",
+      "locationHi": "Near Market",
+      "fatherName": "",
+      "fatherNameHi": "",
+      "accountOpenDate": "2026-09-20",
+      "notes": ""
+    },
+    {
+      "id": "SN400",
+      "name": "Ram Kumar Verma",
+      "nameHi": "राम कुमार वर्मा",
+      "phone": "9876501234",
+      "village": "Rampur Kalan",
+      "villageHi": "रामपुर कलां",
+      "location": "Near Primary School, Rampur",
+      "locationHi": "प्राथमिक विद्यालय के पास, रामपुर",
+      "fatherName": "Late Badri Prasad",
+      "fatherNameHi": "स्व. बद्री प्रसाद",
+      "accountOpenDate": "2026-09-10",
+      "notes": "Regular farmer, 4 bigha land",
+      "notesHi": "नियमित किसान, 4 बीघा खेती"
+    },
+    {
+      "id": "SN401",
+      "name": "Dinesh Yadav",
+      "nameHi": "दिनेश यादव",
+      "phone": "9812345678",
+      "village": "Shivpur",
+      "villageHi": "शिवपुर",
+      "location": "Main Road, Near Shiv Mandir",
+      "locationHi": "मेन रोड, शिव मंदिर के पास",
+      "fatherName": "Rajesh Yadav",
+      "fatherNameHi": "राजेश यादव",
+      "accountOpenDate": "2026-09-12",
+      "notes": "Deposits both mustard and wheat regularly",
+      "notesHi": "सरसों और गेहूं दोनों नियमित जमा"
+    },
+    {
+      "id": "SN402",
+      "name": "Mohammad Harun",
+      "nameHi": "मोहम्मद हारून",
+      "phone": "",
+      "village": "Noor Nagar",
+      "villageHi": "नूर नगर",
+      "location": "Gali No. 4, Madarsa Road",
+      "locationHi": "गली न. 4, मदरसा रोड",
+      "fatherName": "Haji Abdul Salam",
+      "fatherNameHi": "हाजी अब्दुल सलाम",
+      "accountOpenDate": "2026-09-14",
+      "notes": "Wholesale wheat bran buyer",
+      "notesHi": "चोकर और आटा नियमित खरीदार"
+    },
+    {
+      "id": "SN403",
+      "name": "Suresh Chandra Pal",
+      "nameHi": "सुरेश चंद्र पाल",
+      "phone": "9456781230",
+      "village": "Baldirai",
+      "villageHi": "बल्दीराय",
+      "location": "Near Milk Dairy Chauraha",
+      "locationHi": "मिल्क डेयरी चौराहे के पास",
+      "fatherName": "Rampher Pal",
+      "fatherNameHi": "रामफेर पाल",
+      "accountOpenDate": "2026-09-15",
+      "notes": "Dairy farm owner - high cattle feed consumption",
+      "notesHi": "डेयरी फार्म - खली व चोकर ज्यादा लेते हैं"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "TXN-70878120",
+      "customerId": "SN403",
+      "date": "2026-09-20",
+      "type": "deposit",
+      "category": "wheat",
+      "item": "Wheat Deposit",
+      "quantityKg": 2000,
+      "depositKg": 2000,
+      "withdrawKg": 0,
+      "oilLitre": 0,
+      "khaliKg": 0,
+      "grindingFeeMode": "cash",
+      "grindingFeeAmount": 0,
+      "note": "2000 kg गेहूं जमा किया",
+      "balanceAfterKg": 2000,
+      "operator": "Munim Ji",
+      "createdAt": "2026-09-20T02:21:18.120Z"
+    },
+    {
+      "id": "TXN-70845786",
+      "customerId": "SN406",
+      "date": "2026-09-20",
+      "type": "deposit",
+      "category": "wheat",
+      "item": "Wheat Deposit",
+      "quantityKg": 200,
+      "depositKg": 200,
+      "withdrawKg": 0,
+      "oilLitre": 0,
+      "khaliKg": 0,
+      "grindingFeeMode": "cash",
+      "grindingFeeAmount": 0,
+      "note": "200 kg गेहूं जमा किया",
+      "balanceAfterKg": 1000,
+      "operator": "Munim Ji",
+      "createdAt": "2026-09-20T02:20:45.786Z"
+    },
+    {
+      "id": "TXN-69629682",
+      "customerId": "SN406",
+      "date": "2026-09-20",
+      "type": "deposit",
+      "category": "wheat",
+      "item": "Wheat Deposit",
+      "quantityKg": 800,
+      "depositKg": 800,
+      "withdrawKg": 0,
+      "oilLitre": 0,
+      "khaliKg": 0,
+      "grindingFeeMode": "cash",
+      "grindingFeeAmount": 0,
+      "note": "800 kg गेहूं जमा किया",
+      "balanceAfterKg": 800,
+      "operator": "Munim Ji",
+      "createdAt": "2026-09-20T02:00:29.682Z"
+    },
+    {
+      "id": "TXN-69217118",
+      "customerId": "SN404",
+      "date": "2026-09-20",
+      "type": "withdraw",
+      "category": "wheat",
+      "item": "Flour Withdrawal",
+      "quantityKg": 20,
+      "depositKg": 0,
+      "withdrawKg": 20,
+      "oilLitre": 0,
+      "khaliKg": 0,
+      "grindingFeeMode": "cash",
+      "grindingFeeAmount": 20,
+      "note": "20 kg flour taken, 20 rs rent paid",
+      "balanceAfterKg": 80,
+      "operator": "Munim Ji",
+      "createdAt": "2026-09-20T01:53:37.118Z"
+    },
+    {
+      "id": "TXN-69217112",
+      "customerId": "SN404",
+      "date": "2026-09-20",
+      "type": "deposit",
+      "category": "wheat",
+      "item": "Wheat Deposit",
+      "quantityKg": 100,
+      "depositKg": 100,
+      "withdrawKg": 0,
+      "oilLitre": 0,
+      "khaliKg": 0,
+      "grindingFeeMode": "none",
+      "grindingFeeAmount": 0,
+      "note": "100 kg wheat deposit",
+      "balanceAfterKg": 100,
+      "operator": "Munim Ji",
+      "createdAt": "2026-09-20T01:53:37.112Z"
+    },
+    {
+      "id": "TXN-69140506",
+      "customerId": "SN400",
+      "date": "2026-09-20",
+      "type": "deposit",
+      "category": "wheat",
+      "item": "Wheat Deposit",
+      "quantityKg": 200,
+      "depositKg": 200,
+      "withdrawKg": 0,
+      "oilLitre": 0,
+      "khaliKg": 0,
+      "grindingFeeMode": "cash",
+      "grindingFeeAmount": 0,
+      "note": "200 kg wheat deposited",
+      "balanceAfterKg": 280,
+      "operator": "Munim Ji",
+      "createdAt": "2026-09-20T01:52:20.506Z"
+    },
+    {
+      "id": "TXN-20260919-01",
+      "customerId": "SN400",
+      "date": "2026-09-19",
+      "type": "deposit",
+      "category": "wheat",
+      "item": "Wheat Deposit",
+      "itemHi": "गेहूं जमा",
+      "quantityKg": 100,
+      "depositKg": 100,
+      "withdrawKg": 0,
+      "grindingFeeMode": "cash",
+      "grindingFeeAmount": 0,
+      "note": "100 kg (1 Quintal) wheat deposited on 19th Sep",
+      "noteHi": "100 किलो गेहूं जमा किया (19 तारीख)",
+      "balanceAfterKg": 100,
+      "operator": "Munim Ji"
+    },
+    {
+      "id": "TXN-20260920-01",
+      "customerId": "SN400",
+      "date": "2026-09-20",
+      "type": "withdraw",
+      "category": "wheat",
+      "item": "Flour (Atta) Withdrawal",
+      "itemHi": "आटा निकासी",
+      "quantityKg": 20,
+      "depositKg": 0,
+      "withdrawKg": 20,
+      "grindingFeeMode": "cash",
+      "grindingFeeAmount": 20,
+      "note": "20 kg fresh flour withdrawn on 20th Sep, Rs. 20 grinding rent paid",
+      "noteHi": "20 किलो आटा निकाला, 20 रु. पिसाई किराया दिया (20 तारीख)",
+      "balanceAfterKg": 80,
+      "operator": "Munim Ji"
+    },
+    {
+      "id": "TXN-20260918-02",
+      "customerId": "SN401",
+      "date": "2026-09-18",
+      "type": "deposit",
+      "category": "mustard",
+      "item": "Mustard Deposit",
+      "itemHi": "सरसों जमा",
+      "quantityKg": 100,
+      "depositKg": 100,
+      "withdrawKg": 0,
+      "grindingFeeMode": "cash",
+      "grindingFeeAmount": 0,
+      "note": "1 Quintal mustard seeds deposited for cold-press crushing",
+      "noteHi": "1 क्विंटल सरसों जमा (पेराई के लिए)",
+      "balanceAfterKg": 100,
+      "expectedOilLitre": 34,
+      "expectedKhaliKg": 64,
+      "oilBalanceLitre": 34,
+      "khaliBalanceKg": 64,
+      "operator": "Munim Ji"
+    },
+    {
+      "id": "TXN-20260920-02",
+      "customerId": "SN401",
+      "date": "2026-09-20",
+      "type": "withdraw",
+      "category": "mustard_oil",
+      "item": "Mustard Oil Withdrawal",
+      "itemHi": "सरसों तेल निकासी",
+      "quantityKg": 10,
+      "depositKg": 0,
+      "withdrawKg": 10,
+      "oilLitre": 10,
+      "khaliKg": 0,
+      "grindingFeeMode": "cash",
+      "grindingFeeAmount": 40,
+      "note": "10 Litres cold-pressed mustard oil withdrawn",
+      "noteHi": "10 लीटर कच्ची घानी तेल निकाला",
+      "oilBalanceLitre": 24,
+      "khaliBalanceKg": 64,
+      "operator": "Munim Ji"
+    }
+  ],
+  "products": [
+    {
+      "id": "PROD-1",
+      "name": "Rama Pure MP Sharbati Chakki Atta",
+      "nameHi": "रामा शुद्ध शरबती चक्की आटा",
+      "category": "Atta",
+      "categoryHi": "आटा",
+      "image": "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&auto=format&fit=crop&q=80",
+      "description": "100% pure native Sharbati wheat slow ground in natural stone chakki. High fiber, rich aroma, and rotis stay soft for hours.",
+      "descriptionHi": "100% शुद्ध देशी शरबती गेहूं से पारंपरिक धीमी गति की पत्थर चक्की में पिसा हुआ। फाइबर और मिठास से भरपूर।",
+      "badge": "BEST SELLER",
+      "badgeHi": "बेस्ट सेलर",
+      "options": [
+        {
+          "size": "5 kg Bag",
+          "price": 180,
+          "inStock": true
+        },
+        {
+          "size": "10 kg Bag",
+          "price": 350,
+          "inStock": true
+        },
+        {
+          "size": "26 kg Sack",
+          "price": 880,
+          "inStock": true
+        },
+        {
+          "size": "50 kg Sack",
+          "price": 1650,
+          "inStock": true
+        }
+      ]
+    },
+    {
+      "id": "PROD-2",
+      "name": "Rama 100% Pure Kacchi Ghani Mustard Oil",
+      "nameHi": "रामा 100% शुद्ध कच्ची घानी सरसों का तेल",
+      "category": "Oil",
+      "categoryHi": "सरसों तेल",
+      "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&auto=format&fit=crop&q=80",
+      "description": "Cold-pressed first-extraction oil with natural pungency and strong authentic aroma. Zero chemicals, zero adulteration.",
+      "descriptionHi": "प्राकृतिक कोल्ड-प्रेस्ड पद्धति से निकाला गया तीव्र झार व असली सुगंध वाला शुद्ध सरसों तेल।",
+      "badge": "100% PURE",
+      "badgeHi": "100% शुद्ध",
+      "options": [
+        {
+          "size": "1 Litre Bottle",
+          "price": 150,
+          "inStock": true
+        },
+        {
+          "size": "2 Litre Jar",
+          "price": 295,
+          "inStock": true
+        },
+        {
+          "size": "5 Litre Can",
+          "price": 720,
+          "inStock": true
+        },
+        {
+          "size": "15 Litre Tin (Commercial)",
+          "price": 2100,
+          "inStock": true
+        }
+      ]
+    },
+    {
+      "id": "PROD-3",
+      "name": "Rama Multigrain Power Atta",
+      "nameHi": "रामा मल्टीग्रेन शक्ति आटा",
+      "category": "Atta",
+      "categoryHi": "मल्टीग्रेन आटा",
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop&q=80",
+      "description": "Nutritious blend of Wheat, Chickpea, Soyabean, Barley, Maize, Ragi, and Flaxseed. High protein and low glycemic index.",
+      "descriptionHi": "गेहूं, चना, सोयाबीन, जौ, मक्का, रागी और अलसी का संतुलित मिश्रण।",
+      "badge": "HEALTHY CHOICE",
+      "badgeHi": "हेल्दी चॉइस",
+      "options": [
+        {
+          "size": "5 kg Bag",
+          "price": 240,
+          "inStock": true
+        },
+        {
+          "size": "10 kg Bag",
+          "price": 460,
+          "inStock": true
+        }
+      ]
+    },
+    {
+      "id": "PROD-4",
+      "name": "Rama Pure Wheat Bran (Chokar)",
+      "nameHi": "रामा शुद्ध गेहूं चोकर",
+      "category": "Chokar",
+      "categoryHi": "चोकर",
+      "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&auto=format&fit=crop&q=80",
+      "description": "Coarse-flaked pure wheat bran for dairy livestock digestion and milk yield enhancement.",
+      "descriptionHi": "मोटे छिलके वाला ताजा गेहूं चोकर। पशुओं के बेहतर दुग्ध उत्पादन के लिए नंबर वन आहार।",
+      "badge": "DAIRY SPECIAL",
+      "badgeHi": "डेयरी स्पेशल",
+      "options": [
+        {
+          "size": "25 kg Sack",
+          "price": 550,
+          "inStock": true
+        },
+        {
+          "size": "45 kg Sack",
+          "price": 980,
+          "inStock": true
+        }
+      ]
+    },
+    {
+      "id": "PROD-5",
+      "name": "Rama Mustard Cattle Cake (Khali)",
+      "nameHi": "रामा सरसों खली (पीना)",
+      "category": "Khali",
+      "categoryHi": "खली",
+      "image": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=600&auto=format&fit=crop&q=80",
+      "description": "Fresh expeller-pressed high-protein mustard cattle feed cake for dairy cattle health and fat content.",
+      "descriptionHi": "ताजा घानी से निकली तेल-युक्त दानेदार सरसों खली।",
+      "badge": "HIGH PROTEIN",
+      "badgeHi": "उच्च प्रोटीन",
+      "options": [
+        {
+          "size": "20 kg Sack",
+          "price": 560,
+          "inStock": true
+        },
+        {
+          "size": "50 kg Sack",
+          "price": 1380,
+          "inStock": true
+        }
+      ]
+    },
+    {
+      "id": "PROD-6",
+      "name": "Rama Roasted Wheat Dalia",
+      "nameHi": "रामा पौष्टिक गेहूं दलिया",
+      "category": "Atta",
+      "categoryHi": "दलिया",
+      "image": "https://images.unsplash.com/photo-1517093157656-b9ec81646698?w=600&auto=format&fit=crop&q=80",
+      "description": "Premium coarse-milled roasted wheat porridge for wholesome nutrition and breakfast.",
+      "descriptionHi": "चुनिंदा साफ शरबती गेहूं से दानेदार दलिया।",
+      "badge": "NUTRITIOUS",
+      "badgeHi": "पौष्टिक",
+      "options": [
+        {
+          "size": "1 kg Pack",
+          "price": 45,
+          "inStock": true
+        },
+        {
+          "size": "5 kg Pack",
+          "price": 210,
+          "inStock": true
+        }
+      ]
+    }
+  ],
+  "counterSales": [
+    {
+      "id": "SALE-101",
+      "date": "2026-09-20",
+      "customerName": "Vinod Gupta (Walk-in)",
+      "phone": "9988776655",
+      "items": [
+        {
+          "name": "Rama 10 kg Atta",
+          "qty": 2,
+          "price": 350,
+          "total": 700
+        },
+        {
+          "name": "Rama 1L Mustard Oil",
+          "qty": 1,
+          "price": 150,
+          "total": 150
+        }
+      ],
+      "totalAmount": 850,
+      "paymentMode": "UPI",
+      "operator": "Counter"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-2026-001",
+      "date": "2026-09-20",
+      "customerName": "Anurag Mishra",
+      "phone": "9415012345",
+      "address": "House No. 42, Civil Lines",
+      "city": "Lucknow",
+      "items": [
+        {
+          "name": "Rama Pure MP Sharbati Atta (10 kg)",
+          "qty": 1,
+          "price": 350
+        },
+        {
+          "name": "Rama Kacchi Ghani Mustard Oil (5L Can)",
+          "qty": 1,
+          "price": 720
+        }
+      ],
+      "total": 1070,
+      "paymentMethod": "Cash on Delivery",
+      "status": "Pending",
+      "type": "Online Website Order"
+    }
+  ],
+  "millStock": {
+    "farmerDepositWheatTotalKg": 3410,
+    "millOwnedWheatQuintal": 140,
+    "processedAttaBags50kg": 65,
+    "processedAttaBags10kg": 120,
+    "chokarBags50kg": 85,
+    "farmerDepositMustardTotalKg": 100,
+    "mustardOilStockLitres": 450,
+    "mustardKhaliSacks": 92
+  }
+}
