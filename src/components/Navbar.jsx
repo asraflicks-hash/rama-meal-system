@@ -12,7 +12,8 @@ import {
   Droplets,
   Receipt,
   PlusCircle,
-  Languages
+  Languages,
+  Calendar
 } from 'lucide-react';
 import { translations } from '../utils/i18n';
 
@@ -28,7 +29,8 @@ export default function Navbar({
   lang,
   setLang,
   activeCommodity,
-  setActiveCommodity
+  setActiveCommodity,
+  onOpenDailyReport
 }) {
   const t = translations[lang] || translations.en;
 
@@ -280,6 +282,16 @@ export default function Navbar({
             >
               <Receipt className="w-3.5 h-3.5" />
               <span>{t.retailPos}</span>
+            </button>
+
+            {/* Section 5: Daily Report & PDF */}
+            <button
+              onClick={onOpenDailyReport}
+              className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 transition-all bg-amber-100 hover:bg-amber-200 text-amber-950 border border-amber-300 shadow-sm shrink-0 font-bold active:scale-95"
+              title="दैनिक आवक-जावक व PDF डाउनलोड"
+            >
+              <Calendar className="w-3.5 h-3.5 text-amber-800" />
+              <span>{lang === 'hi' ? '📅 दैनिक PDF' : '📅 Daily PDF'}</span>
             </button>
           </div>
         </div>

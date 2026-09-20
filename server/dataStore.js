@@ -423,6 +423,50 @@ class DataStore {
       rates: this.data.rates
     };
   }
+
+  getDailyReport(targetDate) {
+    const date = targetDate || new Date().toISOString().split('T')[0];
+    const txns = this.getTransactions({ date });
+    const counterSales = (this.data.counterSales || []).filter(s => s.date === date);
+
+    const wheatDepositTotalKg = txns
+      .filter(t => t.category === 'wheat' && t.type === 'deposit')
+      .reduce((sum, t) => sum + (Number(t.quantityKg) || 0), 0);
+
+    const attaWithdrawnTotalKg = txns
+      .filter(t => t.category === 'wheat' && t.type === 'withdraw')
+      .reduce((sum, t) => sum + (Number(t.quantityKg) || 0), 0);
+
+    const mustardDepositTotalKg = txns
+      .filter(t => t.category === 'mustard' && t.type === 'deposit')
+      .reduce((sum, t) => sum + (Number(t.quantityKg) || 0), 0);
+
+    const oilWithdrawnTotalLitre = txns
+      .filter(t => t.type === 'withdraw')
+      .reduce((sum, t) => sum + (Number(t.oilLitre) || 0), 0);
+
+    const grindingFeeTotal = txns
+      .reduce((sum, t) => sum + (Number(t.grindingFeeAmount) || 0), 0);
+
+    const counterSalesTotal = counterSales
+      .reduce((sum, s) => sum + (Number(s.totalAmount) || 0), 0);
+
+    const totalCashIncome = grindingFeeTotal + counterSalesTotal;
+
+    return {
+      date,
+      wheatDepositTotalKg,
+      attaWithdrawnTotalKg,
+      mustardDepositTotalKg,
+      oilWithdrawnTotalLitre,
+      grindingFeeTotal,
+      counterSalesTotal,
+      totalCashIncome,
+      totalTransactions: txns.length,
+      transactions: txns,
+      counterSales
+    };
+  }
 }
 
 export const dataStore = new DataStore();

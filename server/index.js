@@ -84,6 +84,17 @@ app.delete('/api/customers/:id', (req, res) => {
   }
 });
 
+// Daily Report (Totals, Cash Income & Transactions by date)
+app.get('/api/daily-report', (req, res) => {
+  try {
+    const { date } = req.query;
+    const report = dataStore.getDailyReport(date);
+    res.json(report);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Transactions (Deposit / Withdrawal)
 app.get('/api/transactions', (req, res) => {
   const { date, type, search } = req.query;

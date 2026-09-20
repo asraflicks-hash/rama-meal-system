@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wheat, Droplets, PlusCircle, LayoutDashboard, Receipt, ShoppingBag, ArrowLeft, X } from 'lucide-react';
+import { Wheat, Droplets, PlusCircle, LayoutDashboard, Receipt, ShoppingBag, ArrowLeft, X, Calendar } from 'lucide-react';
 import { translations } from '../utils/i18n';
 
 export default function MobileNav({ 
@@ -8,6 +8,7 @@ export default function MobileNav({
   onOpenQuickAction, 
   onBack,
   onHome,
+  onOpenDailyReport = () => {},
   lang = 'en',
   activeCommodity = 'wheat',
   setActiveCommodity = () => {}
@@ -123,6 +124,16 @@ export default function MobileNav({
       >
         <LayoutDashboard className="w-5 h-5" />
         <span>{lang === 'hi' ? 'स्टॉक' : 'Stock'}</span>
+      </button>
+
+      {/* 5. Daily PDF Report */}
+      <button
+        onClick={onOpenDailyReport}
+        className="flex flex-col items-center gap-1 text-[11px] font-medium text-amber-300 hover:text-white transition-colors"
+        title="दैनिक रिपोर्ट व PDF"
+      >
+        <Calendar className="w-5 h-5 text-amber-400" />
+        <span>{lang === 'hi' ? 'रिपोर्ट' : 'Report'}</span>
       </button>
 
       {/* Floating Mobile Quick Back & Home Dock */}

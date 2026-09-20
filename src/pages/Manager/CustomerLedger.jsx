@@ -35,7 +35,8 @@ export default function CustomerLedger({
   onOpenQuickActionForCustomer,
   lang = 'en',
   activeCommodity = 'all',
-  setActiveCommodity = () => {}
+  setActiveCommodity = () => {},
+  onOpenDailyReport = () => {}
 }) {
   const t = translations[lang] || translations.en;
   const isHi = lang === 'hi';
@@ -265,7 +266,18 @@ export default function CustomerLedger({
           </button>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
+          {/* DAILY REGISTER & REPORT BUTTON */}
+          <button
+            type="button"
+            onClick={onOpenDailyReport}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-stone-900 via-stone-800 to-stone-900 hover:from-stone-800 hover:to-stone-700 text-amber-300 border border-amber-500/50 font-black px-3.5 py-2 rounded-xl text-xs shadow-md transition-all active:scale-95"
+            title="तारीख वार हिसाब व PDF रिपोर्ट"
+          >
+            <Calendar className="w-4 h-4 text-amber-400 stroke-[2.5]" />
+            <span>📅 {isHi ? 'दैनिक रजिस्टर व PDF' : 'Daily Report & PDF'}</span>
+          </button>
+
           <button
             onClick={() => setIsAddModalOpen(true)}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 font-black px-3.5 py-2 rounded-xl text-xs shadow-sm transition-all active:scale-95"
@@ -477,6 +489,17 @@ export default function CustomerLedger({
             <span className="bg-white/20 text-[10px] px-1.5 py-0.2 rounded-full font-bold ml-0.5">
               {outgoingTxns.length}
             </span>
+          </button>
+
+          {/* 4. Daily Report & PDF Tab */}
+          <button
+            type="button"
+            onClick={onOpenDailyReport}
+            className="px-3 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 shrink-0 bg-amber-100 hover:bg-amber-200 text-amber-950 border border-amber-300 shadow-sm active:scale-95"
+            title="तारीख वार हिसाब व PDF"
+          >
+            <Calendar className="w-3.5 h-3.5 text-amber-800" />
+            <span>{isHi ? '📅 दैनिक रिपोर्ट (PDF)' : '📅 Daily Report (PDF)'}</span>
           </button>
         </div>
 

@@ -16,6 +16,7 @@ import CustomerDetail from './pages/Manager/CustomerDetail';
 import MustardOilLedger from './pages/Manager/MustardOilLedger';
 import Dashboard from './pages/Manager/Dashboard';
 import CounterSale from './pages/Manager/CounterSale';
+import DailyReportModal from './pages/Manager/DailyReportModal';
 
 import { ArrowLeft, X, Home as HomeIcon } from 'lucide-react';
 
@@ -33,6 +34,9 @@ export default function App() {
   const [customers, setCustomers] = useState([]);
   const [products, setProducts] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
+
+  // Daily Report & PDF Modal state
+  const [isDailyReportOpen, setIsDailyReportOpen] = useState(false);
 
   // Quick Action Modal state
   const [isQuickActionOpen, setIsQuickActionOpen] = useState(false);
@@ -206,6 +210,7 @@ export default function App() {
           setLang={setLang}
           activeCommodity={activeCommodity}
           setActiveCommodity={setActiveCommodity}
+          onOpenDailyReport={() => setIsDailyReportOpen(true)}
         />
 
         {/* Main Content Area */}
@@ -298,6 +303,7 @@ export default function App() {
               lang={lang}
               activeCommodity={activeCommodity}
               setActiveCommodity={setActiveCommodity}
+              onOpenDailyReport={() => setIsDailyReportOpen(true)}
             />
           )}
 
@@ -346,12 +352,21 @@ export default function App() {
           onOpenQuickAction={() => handleOpenQuickAction()}
           onBack={handleBack}
           onHome={handleHome}
+          onOpenDailyReport={() => setIsDailyReportOpen(true)}
           lang={lang}
           activeCommodity={activeCommodity}
           setActiveCommodity={setActiveCommodity}
         />
 
         {/* Modals & Drawers */}
+        <DailyReportModal
+          isOpen={isDailyReportOpen}
+          onClose={() => setIsDailyReportOpen(false)}
+          onHome={handleHome}
+          lang={lang}
+          millInfo={millInfo}
+        />
+
         <QuickActionModal
           isOpen={isQuickActionOpen}
           onClose={() => setIsQuickActionOpen(false)}
